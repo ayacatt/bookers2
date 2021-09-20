@@ -1,0 +1,6 @@
+<div>
+  <p>Title：<%= @book.title %></p>
+  <p>Opinion：<%= @book.opinion %></p>
+  <p>name：<%= @book.user.name %></p>
+  <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+</div>
