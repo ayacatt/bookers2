@@ -11,7 +11,9 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.page(params[:page]).reverse_order
+    @books = Book.all
+    @user = current_user
+    @users = User.all
   end
 
   def show

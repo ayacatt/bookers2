@@ -1,6 +1,33 @@
 <div>
-  <p>Title：<%= @book.title %></p>
-  <p>Opinion：<%= @book.opinion %></p>
-  <p>name：<%= @book.user.name %></p>
-  <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+  <h1>User info</h1>
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <h3>name <%= @user.name %></h3>
+  <h3>introduction <%= @user.introduction %></h3>
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "User info", edit_user_path(@user) %></p>
+  <% end %>
 </div>
+
+<div>
+<h1>New Book</h1>
+<%= form_with model: @books, url: books_path, local:true do |f| %>
+  <p>Title</p>
+  <%= f.text_field :title %>
+  <p>Opinion</p>
+  <%= f.text_area :opinion %>
+  <%= f.submit 'Create Book' %>
+</div>
+<% end %>
+
+<h1>Books</h1>
+<% @books.each do |book| %>
+<div>
+  <%= link_to book_path(book.id) do %>
+   <% end %>
+  
+  <p>Title：<%= book.title %></p>
+  <p>Opinion：<%= book.opinion %></p>
+</div>
+
+<% end %>
+<%= paginate @books %>
