@@ -1,0 +1,38 @@
+<div>
+  <div class="col-lg-4" >
+  <h2>User info</h2>
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <table class="table table-hover table-inverse">
+    <tbody>
+      <tr>
+        <th>name</th>
+        <th><%= @user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= @user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
+
+    <p><%= link_to "User info", edit_user_path(@user) %></p>
+  </div>
+</div>
+
+<div>
+<h2>New Book</h2>
+<% if @newbook.errors.any? %>
+  <%= @newbook.errors.count %>errors prohibited this obj from being saved:
+  <% @newbook.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<%= form_with model: @newbook, url: books_path, local:true do |f| %>
+  <p>Title</p>
+  <%= f.text_field :title %>
+  <p>Opinion</p>
+  <%= f.text_area :opinion %>
+  <%= f.submit 'Create Book' %>
+</div>
+<% end %>

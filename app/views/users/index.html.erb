@@ -1,31 +1,29 @@
-<div>
-  <h1>User info</h1>
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  <h3>name <%=   @user.name %></h3>
-  <h3>introduction <%=  @user.introduction %></h3>
-    <p><%= link_to "User info", edit_user_path(@user) %></p>
-  
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4" >
+      <%= render 'users/list', users: @users %>
+    </div>
 
-<div>
-<h1>New Book</h1>
-<%= form_with model: @books, url: books_path, local:true do |f| %>
-  <p>Title</p>
-  <%= f.text_field :title %>
-  <p>Opinion</p>
-  <%= f.text_area :opinion %>
-  <%= f.submit 'Create Book' %>
-</div>
-<% end %>
+<div class="col-lg-8">
+<h2>Users</h2>
+  <table class="table table-hover table-inverse">
 
-<h1>Users</h1>
-<% @users.each do |user| %>
-<div>
-  <%= link_to user_path(user.id) do %>
-   <% end %>
-  
-  <p>image：<%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%></p>
-  <p>name：<%= user.name %></p>
-</div>
+  <thead>
+    <tr>
+    <th>image</th>
+    <th>name</th>
+    </tr>
+  </thead>
 
-<% end %>
+  <tbody>
+    <% @users.each do |user| %>
+  <tr>
+    <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%></td>
+    <td><%= user.name %></td>
+    <td><%= link_to "Show", user_path(@user) %></td>
+  </tr>
+    <% end %>
+  </tbody>
+  </table>
+  </div>
+</div>
