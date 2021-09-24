@@ -4,7 +4,7 @@
   <% @user.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
-  
+
 <% end %>
 <%= form_with model:@user, local:true do |f| %>
   <label for="inputName">Name</label>
@@ -12,8 +12,8 @@
   <label for="inputImage">Image</label>
   <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
       <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <label for="introduction">introduction</label>
-  <%= f.text_field :Introduction, autofocus: true, id:"introduction", placeholder:"introduction"%>
+  <label for="introduction">Introduction</label>
+  <%= f.text_field :introduction, autofocus: true, id:"introduction", placeholder:"introduction"%>
 
 
   <%= f.submit "Update User" %>

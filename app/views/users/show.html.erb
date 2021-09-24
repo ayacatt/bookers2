@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4" >
-      <%= flash[:notice] %>
-      <%= render 'users/list', users: @users , newbook: @newbook %>
+      <%= render 'users/list', user: @user ,users: @users , newbook: @newbook %>
     </div>
 
 <div class="col-lg-8">
